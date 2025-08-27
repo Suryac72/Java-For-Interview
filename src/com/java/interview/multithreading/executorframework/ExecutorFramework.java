@@ -187,6 +187,18 @@ public class ExecutorFramework {
         System.out.println(future1.isCancelled());
         System.out.println(future.isDone());
 
+
+        //Cached Thread Pool
+        ExecutorService executorService4 = Executors.newCachedThreadPool();
+        for (int i = 0; i < 10; i++) {
+            int finalI = i;
+            executorService4.submit(() -> {
+                long result = factorial(finalI);
+                System.out.println("Factorial of " + finalI + " is: " + result);
+            });
+        }
+        executorService4.shutdown();
+
     }
 
     public static int factorial(int number) {
